@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Input Form</title>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <p class="h1 text-dark" style="text-align: center;">
+            Count Words
+        </p>
+    </div>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <textarea class="form-control" name="paragraph" id="" cols="30" rows="10"></textarea>
+            <button type="submit" class="mt-3 btn btn-outline-primary btn-block">Count Words</button>
+        </form>
+    </div>
+    {% if response %}
+    <div class="container mt-5">
+        <p class="h5" style="text-align: center;">Result</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Word</th>
+                    <th scope="col">Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for word, count in response.items %}
+                <tr>
+                    <td>{{word}}</td>
+                    <td>{{count}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</body>
+
+</html>
